@@ -55,25 +55,13 @@ public class LoginResult extends HttpServlet {
             
             if (udb.getUserID() != 0) {
                 
-                
                 ArrayList<ArrayList> cart = new ArrayList<>();
                 session.setAttribute("cart", cart);
-                
-//                String itemUrl = "/Kagoyume/http:/localhost:8084/Kagoyume/Item";
-//                String searchUrl = "/Kagoyume/http:/localhost:8084/Kagoyume/Search";
-//                
-//                if(url.equals("Item")) {
-//                    request.getRequestDispatcher(itemUrl).forward(request, response);;
-//                } if(url.equals(searchUrl)) {
-//                    request.getRequestDispatcher("Search").forward(request, response);
-//                }
-                
+ 
                 // ログインする直前のページに戻る
                 String url = (String) session.getAttribute("referer");
                 request.getRequestDispatcher(url).forward(request, response);
                 
-                
-            
             } else {
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }

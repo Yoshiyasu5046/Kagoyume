@@ -7,7 +7,8 @@
 <%@page import="jums.JumsHelper"
         import="java.util.ArrayList"
         import="jums.ItemBeans"
-        import="java.util.HashMap" %>
+        import="java.util.HashMap"
+        import="java.util.ArrayList" %>
 
 <%
     JumsHelper jh = JumsHelper.getInstance();
@@ -28,28 +29,30 @@
             <th>商品画像</th>
             <th>商品名</th>
             <th>価格</th>
-            <th>評価</th>
             <th>削除</th>
             </tr>
             
+                
+            <% for (int i = 0; i < cart.size(); i++) { 
+                ArrayList<ItemBeans> cartContent = cart.get(i); %>
             <tr>
-                <% for (int i = 0; i < cart.size(); i++) { %>
-                <td><img src="<%= cart.get(i).get(0)%>"></td>
-                <td> <%= cart.get(i).get(1)%></td>
-                <td> <%= cart.get(i).get(2)%>円</td>
-                <td> <%= cart.get(i).get(3)%></td>
+                <td><img src="<%= cartContent.get(0).getImage() %>"></td>
+                <td> <%= cartContent.get(0).getName() %></td>
+                <td> <%= cartContent.get(0).getPrice() %>円</td>
                 <td>
                     <form action="Cart" method="post">
                         <input type="submit" value="削除" name="deleteItem">
                         <input type="hidden" name="deletingItem" value="<%= i%>">
                     </form>
                 </td>
-                <% } %>
+               
             </tr>
+             <% } %>
         </table>
         合計:<%= session.getAttribute("total")%>円<br><br>
         <form action="BuyConfirm" method="post">
             <input type="submit" value="購入" name="ToBuyConfirm">  
-        </form>
+        </form> <br><br>
+        <a href="index.jsp">トップページへ</a>
     </body>
 </html>

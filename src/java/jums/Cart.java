@@ -34,31 +34,34 @@ public class Cart extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             
-            // cart.jspでユーザーがアイテムを削除した場合の処理。
-            HttpSession session = request.getSession();
-            ArrayList<ArrayList> cart = (ArrayList) session.getAttribute("cart");
-            
-            String deletingItem = request.getParameter("deletingItem");
-            int indexOfDeletingItem;
-            if (deletingItem.equals("")) {
-                indexOfDeletingItem = 0;
-            }else {
-                indexOfDeletingItem = Integer.parseInt(request.getParameter("deletingItem"));
-                cart.remove(indexOfDeletingItem);
-            }
-            
-            // カート内商品の合計金額の取得
-            UserDataBeans udb = new UserDataBeans();
-            int total = udb.getTotal();
-            for (int i = 0; i < cart.size(); i++) {
-                // totalを取得
-                // total += cart.get(i).get(2);
-                // 型に関するエラーが出てします。
-            }
-            udb.setTotal(total);
-            session.setAttribute("total", udb.getTotal());
-            
-            request.getRequestDispatcher("/cart.jsp").forward(request, response);
+                // cart.jspでユーザーがアイテムを削除した場合の処理。
+                HttpSession session = request.getSession();
+                UserDataBeans udb = new UserDataBeans();
+//                ArrayList<ArrayList> cart = (ArrayList) session.getAttribute("cart");
+                ArrayList<ItemBeans> cartContent = (ArrayList) session.getAttribute("detail");
+                
+                // udb.getTotal()が1以上の場合、total = udb.getTotal()
+                int total;
+                if (udb.getTotal() == 0) {
+                    total = 0;
+                } else {
+                    total = udb.getTotal();
+                }
+                
+                // totalを更新し、DBに格納。
+                total += Integer.parseInt(cartContent.get(0).getPrice());
+                
+                // cardContentをarrayListとしてcartに入れる。
+//                cart.add(cartContent);
+                 
+                // カート内商品の合計金額の取得 
+                udb.setTotal(total);
+                session.setAttribute("total", total);
+                
+                // session"カート"に追加。
+//                session.setAttribute("cart", cart);
+                
+                request.getRequestDispatcher("/cart.jsp").forward(request, response);
             
         }catch(Exception e) {
             
