@@ -40,7 +40,6 @@ public class LoginResult extends HttpServlet {
             String password = request.getParameter("password");
             
             HttpSession session = request.getSession();
-            ItemBeans ib = (ItemBeans) session.getAttribute("ib");
             
             UserDataBeans udb = new UserDataBeans();
             udb.setName(userName);
@@ -51,13 +50,19 @@ public class LoginResult extends HttpServlet {
             UserDataDAO.getInstance().login(dto);
             
             udb.Dto2UdbMapping(dto);
-            session.setAttribute("Login", udb);
+            session.setAttribute("login", udb);
             
             if (udb.getUserID() != 0) {
                 
+                // カートの作成
                 ArrayList<ArrayList> cart = new ArrayList<>();
                 session.setAttribute("cart", cart);
- 
+                
+                // total金額を格納するsessionを作成
+                int total = 0;
+                session.setAttribute("total", total);
+                
+                Log.LogWrite("ログインに成功しました。");
                 // ログインする直前のページに戻る
                 String url = (String) session.getAttribute("referer");
                 request.getRequestDispatcher(url).forward(request, response);

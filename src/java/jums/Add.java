@@ -45,6 +45,7 @@ public class Add extends HttpServlet {
                 cart.add(detail);
                 session.setAttribute("cart", cart);
                 
+                Log.LogWrite("カートに商品を追加しました。");
                 request.getRequestDispatcher("add.jsp").forward(request, response);
                 
         } catch(Exception e) {

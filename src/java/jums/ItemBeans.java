@@ -81,5 +81,10 @@ public class ItemBeans implements Serializable {
         this.rate = rate;
     }
 
+    public void Dto2IbMapping(UserDataDTO dto) {
+        this.image = dto.getImage();
+        this.name = dto.getGoodName();
+        this.price = String.valueOf(dto.getPrice());
+    }
 
 }

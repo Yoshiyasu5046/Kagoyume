@@ -39,4 +39,34 @@ public class JumsHelper {
     public String logout(){
         return "<a href=\""+ logoutURL +"\">ログアウト</a>";
     }
+    
+    //myDataへのリンクを定数として設定
+    private final String myDataURL = "MyData";
+    
+    //トップへのリンクを返却
+    public String myData(){
+        return "<a href=\""+ myDataURL +"\">マイページへ</a>";
+    }
+    
+    public String deliveryType(int i) {
+        switch(i){
+            case 1:
+                return "自宅配送";
+            case 2:
+                return "コンビニ受け取り";
+            case 3:
+                return "その他";
+        }
+        return "";
+    }
+
+//  login時は、logout, myCart, myDataを表示。それ以外の時は非表示にする。        
+    public String loginCheck(UserDataBeans udb) {
+        if (udb != null) {
+            return logout();
+        }
+        return login();
+    }
+
+
 }

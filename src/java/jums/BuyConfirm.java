@@ -35,6 +35,7 @@ public class BuyConfirm extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("toCart",request.getHeader("REFERER"));
             
+            Log.LogWrite("購買確認へ移ります。");
             request.getRequestDispatcher("/buyConfirm.jsp").forward(request, response);
             
         } catch(Exception e) {

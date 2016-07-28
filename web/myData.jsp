@@ -12,8 +12,8 @@
 
 <%
     JumsHelper jh = JumsHelper.getInstance();
-    ArrayList<ArrayList> login = (ArrayList) session.getAttribute("Login");
-    UserDataBeans udb = (UserDataBeans) request.getSession();
+    UserDataBeans udb = (UserDataBeans) session.getAttribute("userData");
+    UserDataBeans login = (UserDataBeans) session.getAttribute("login");
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -26,22 +26,22 @@
     <body>
         <h1>ユーザー情報</h1>
         
-        <h1>詳細情報</h1>
-        <% if (login != null) { %>
-        名前:<%= login.get(1).udb.getName()%><br>
-        メールアドレス:<%= login.get(3).udb.getEmail()%><br>
-        住所:<%= login.get(4).udb.getAddress()%><br>
-        購入総額:<%= login.get(5).udb.getTotal()%><br>
-        <% } %>
+        ユーザー名:<%= udb.getName()%><br>
+        パスワード:<%= udb.getPassword()%><br>
+        メールアドレス:<%= udb.getEmail()%><br>
+        住所:<%= udb.getAddress()%><br>
+        購入総額:<%= udb.getTotal()%><br>
+        
        
         <form action="MyHistory" method="post">
-            <input type="submit" value="購入履歴" name="ToBuyConfirm">  
+            <input type="submit" value="購入履歴" name="ToMyHistory">  
         </form>
         <form action="MyUpdate" method="post">
-            <input type="submit" value="更新" name="ToBuyConfirm">  
+            <input type="submit" value="更新" name="ToMyUpdate">  
         </form>
         <form action="MyDelete" method="post">
-            <input type="submit" value="削除" name="ToBuyConfirm">  
+            <input type="submit" value="削除" name="ToMyDelete">  
         </form>
+        <%= jh.loginCheck(login) %>
     </body>
 </html>

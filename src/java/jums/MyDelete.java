@@ -7,7 +7,6 @@ package jums;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +17,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author yoshiyasukitahara
  */
-public class Cart extends HttpServlet {
+public class MyDelete extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,36 +33,15 @@ public class Cart extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             
-                // cart.jspでユーザーがアイテムを削除した場合の処理。
-                HttpSession session = request.getSession();
-                UserDataBeans udb = new UserDataBeans();
-//                ArrayList<ArrayList> cart = (ArrayList) session.getAttribute("cart");
-                ArrayList<ItemBeans> cartContent = (ArrayList) session.getAttribute("detail");
-                
-                // udb.getTotal()が1以上の場合、total = udb.getTotal()
-                int total;
-                if (udb.getTotal() == 0) {
-                    total = 0;
-                } else {
-                    total = udb.getTotal();
-                }
-                
-                // totalを更新し、DBに格納。
-                total += Integer.parseInt(cartContent.get(0).getPrice());
-                
-                // cardContentをarrayListとしてcartに入れる。
-//                cart.add(cartContent);
-                 
-                // カート内商品の合計金額の取得 
-                udb.setTotal(total);
-                session.setAttribute("total", total);
-                
-                // session"カート"に追加。
-//                session.setAttribute("cart", cart);
-                
-                request.getRequestDispatcher("/cart.jsp").forward(request, response);
+            HttpSession session = request.getSession();
+            // 詳細情報ページへのURLをセッションに保存。
+            String url = request.getHeader("REFERER");
+            session.setAttribute("to_myData", url);
             
-        }catch(Exception e) {
+            Log.LogWrite("ユーザー情報を削除するページヘ移動しました。");
+            request.getRequestDispatcher("myDelete.jsp").forward(request, response);
+            
+        } catch(Exception e) {
             
         }
     }

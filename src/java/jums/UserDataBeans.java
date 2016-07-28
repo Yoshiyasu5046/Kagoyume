@@ -19,7 +19,8 @@ public class UserDataBeans implements Serializable {
     private String email;
     private String address;
     private int total = 0;
-    private Timestamp newDate;
+    private int deliveryType = 0;
+    private Timestamp date;
     private int deleteFlag = 0;
     
     // コンストラクターを作成
@@ -96,12 +97,19 @@ public class UserDataBeans implements Serializable {
     public void setTotal(int total) {
         this.total = total;
     }
-            
-    public Timestamp getTimestamp() {
-        return this.newDate;
+    
+    public int getDeliveryType() {
+        return this.deliveryType;
     }
-    public void setTimestamp(Timestamp newDate) {
-        this.newDate = newDate;
+    public void setDeliveryType(int deliveryType) {
+        this.deliveryType = deliveryType;
+    }
+        
+    public Timestamp getTimestamp() {
+        return this.date;
+    }
+    public void setTimestamp(Timestamp date) {
+        this.date = date;
     }
     
     public int getDeleteFlag() {
@@ -126,6 +134,7 @@ public class UserDataBeans implements Serializable {
         this.password = dto.getPassword();
         this.email = dto.getEmail();
         this.total = dto.getTotal();
+        this.deliveryType = dto.getDeliveryType();
         this.address = dto.getAddress();
         this.deleteFlag = dto.getDeleteFlag();
     }

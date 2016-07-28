@@ -46,6 +46,7 @@ public class RegisrationComplete extends HttpServlet {
             //セッションを破棄
             session.removeAttribute("udb");
             
+            Log.LogWrite("登録されたユーザー情報を確認するページヘ移動しました。");
             request.getRequestDispatcher("/regisrationComplete.jsp").forward(request, response);
         
         }catch(Exception e) {

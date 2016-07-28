@@ -4,6 +4,7 @@
     Author     : yoshiyasukitahara
 --%>
 
+<%@page import="jums.UserDataBeans"%>
 <%@page import="jums.JumsHelper"
         import="java.util.ArrayList"
         import="jums.ItemBeans"
@@ -12,6 +13,7 @@
 <%
     JumsHelper jh = JumsHelper.getInstance();
     ArrayList<ItemBeans> ib = (ArrayList) session.getAttribute("detail");
+    UserDataBeans login = (UserDataBeans) session.getAttribute("login");
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -38,13 +40,13 @@
                 <td> <%= ib.get(0).getPrice()%>円</td>
                 <td> <%= ib.get(0).getRate()%></td>
                 <td>
-                    <form action="Cart" method="post">
+                    <form action="Cart2" method="post">
                         <input type="submit" value="カートへ" name="ToCart">  
                     </form>
                 </td>
             </tr>
         </table>
       
-    <%= jh.login()%>
+    <%= jh.loginCheck(login) %>
     </body>
 </html>

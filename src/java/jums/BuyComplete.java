@@ -7,10 +7,12 @@ package jums;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,6 +33,25 @@ public class BuyComplete extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
+            
+            HttpSession session = request.getSession();
+            UserDataDTO dto = new UserDataDTO();
+            UserDataBeans udb = (UserDataBeans) session.getAttribute("login");
+            UserDataDAO dao = new UserDataDAO();
+            dto.setDeliveryType(Integer.parseInt(request.getParameter("deliveryType")));
+            
+            ArrayList<ArrayList> cart = (ArrayList) session.getAttribute("cart");
+            ArrayList<ItemBeans> cartContent = new ArrayList<>();
+            for (int i = 0; i < cart.size(); i++) {
+                cartContent = cart.get(i);
+                dto.setCode(cartContent.get(0).getCode());
+                dto.setUserID(udb.getUserID());
+                dto.setTotal(udb.getTotal());
+                dao.buyRecord(dto);
+            }
+            
+            Log.LogWrite("購買を確定しました。");
+            request.getRequestDispatcher("/buyComplete.jsp").forward(request, response);
             
         } catch(Exception e) {
             

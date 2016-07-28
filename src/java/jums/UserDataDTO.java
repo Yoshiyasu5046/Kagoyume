@@ -17,9 +17,14 @@ public class UserDataDTO {
     private String password;
     private String mail;
     private String address;
+    private String code;
+    private int deliveryType = 0;
     private int total = 0;
-    private Timestamp newDate;
+    private Timestamp date;
     private int deleteFlg = 0;
+    private int price = 0;
+    private String goodName;
+    private String image;
     
     public UserDataDTO(){}
         
@@ -44,6 +49,20 @@ public class UserDataDTO {
         this.password = pw;
     }
     
+    public String getCode() {
+        return this.code;
+    }
+    public void setCode(String code) {
+        this.code = code;
+    }
+    
+    public int getDeliveryType() {
+        return this.deliveryType;
+    }
+    public void setDeliveryType(int deliveryType) {
+        this.deliveryType = deliveryType;
+    }
+    
     public String getEmail(){ 
         return this.mail;
     }
@@ -65,11 +84,11 @@ public class UserDataDTO {
         this.total = total;
     }
     
-    public Timestamp getNewDate(){ 
-        return this.newDate;
+    public Timestamp getDate(){ 
+        return this.date;
     }
-    public void setNewDate(Timestamp nd){ 
-        this.newDate = nd;
+    public void setDate(Timestamp date){ 
+        this.date = date;
     }
     
     public int getDeleteFlag(){ 
@@ -79,5 +98,26 @@ public class UserDataDTO {
         this.deleteFlg = df;
     }
     
+    public int getPrice() {
+        return this.price;
+    }
+    public void setPrice(int price) {
+        this.price = price;
+    }
     
+    public String getGoodName() {
+        return this.goodName;
+    }
+    public void setGoodName(String goodName) {
+        this.goodName = goodName;
+    }
+    
+    public String getImage() {
+        return this.image;
+    }
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+
 }

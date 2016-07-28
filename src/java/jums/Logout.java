@@ -36,6 +36,7 @@ public class Logout extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("referer", url);
                 
+                Log.LogWrite("ログアウト画面に移動しました。");
                 request.getRequestDispatcher("/logout.jsp").forward(request, response);
         
         } catch(Exception e) {

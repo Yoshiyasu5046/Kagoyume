@@ -35,8 +35,13 @@ public class LogoutResult extends HttpServlet {
             HttpSession session = request.getSession();
             String url = (String) session.getAttribute("referer");
             
-            session.invalidate();
+            // カートのセッションも消したりする。上手く調整する必要がある。
+            session.removeAttribute("login");
+            
+            Log.LogWrite("ログアウトしました。");
             request.getRequestDispatcher(url).forward(request, response);
+            
+            
         }catch(Exception e) {
             
         }

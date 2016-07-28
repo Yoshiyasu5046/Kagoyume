@@ -41,6 +41,8 @@ public class Search extends HttpServlet {
                 request.setAttribute("searchWord", searchWord);
                 ArrayList<ItemBeans> ib = YahooConnect.getInstance().search(searchWord);
                 session.setAttribute("SearchResult", ib);
+                
+                Log.LogWrite("検索ページヘ移動する。");
                 request.getRequestDispatcher("search2.jsp").forward(request, response);
             // 検索ワードが未記入の場合の処理。
             } else {

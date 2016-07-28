@@ -48,7 +48,7 @@ public class RegisrationConfirm extends HttpServlet {
             session.setAttribute("udb", udb);
             System.out.println("Sessionを更新しました。");
             
-            
+            Log.LogWrite("ユーザー情報登録内容を確認するページヘ移動します。");
             request.getRequestDispatcher("/regisrationConfirm.jsp").forward(request, response);
         }catch(Exception e) {
             

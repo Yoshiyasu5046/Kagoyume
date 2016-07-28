@@ -4,6 +4,7 @@
     Author     : yoshiyasukitahara
 --%>
 
+<%@page import="jums.UserDataBeans"%>
 <%@page import="jums.JumsHelper"
         import="java.util.ArrayList"
         import="jums.ItemBeans" %>
@@ -11,6 +12,7 @@
 <%
     JumsHelper jh = JumsHelper.getInstance();
     ArrayList<ItemBeans> ib = (ArrayList<ItemBeans>) session.getAttribute("detail");
+    UserDataBeans login = (UserDataBeans) session.getAttribute("login");
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -48,6 +50,6 @@
                 </td>
             </tr>
         </table>
-        <%= jh.login()%>
+        <%= jh.loginCheck(login) %>
     </body>
 </html>

@@ -37,10 +37,6 @@
         <servlet-class>jums.LogoutResult</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Cart</servlet-name>
-        <servlet-class>jums.Cart</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>BuyConfirm</servlet-name>
         <servlet-class>jums.BuyConfirm</servlet-class>
     </servlet>
@@ -51,6 +47,30 @@
     <servlet>
         <servlet-name>MyData</servlet-name>
         <servlet-class>jums.MyData</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MyHistory</servlet-name>
+        <servlet-class>jums.MyHistory</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MyUpdate</servlet-name>
+        <servlet-class>jums.MyUpdate</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MyUpdateResult</servlet-name>
+        <servlet-class>jums.MyUpdateResult</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Cart2</servlet-name>
+        <servlet-class>jums.Cart2</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MyDelete</servlet-name>
+        <servlet-class>jums.MyDelete</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MyDeleteResult</servlet-name>
+        <servlet-class>jums.MyDeleteResult</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Search</servlet-name>
@@ -89,10 +109,6 @@
         <url-pattern>/LogoutResult</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Cart</servlet-name>
-        <url-pattern>/Cart</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>BuyConfirm</servlet-name>
         <url-pattern>/BuyConfirm</url-pattern>
     </servlet-mapping>
@@ -103,6 +119,30 @@
     <servlet-mapping>
         <servlet-name>MyData</servlet-name>
         <url-pattern>/MyData</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MyHistory</servlet-name>
+        <url-pattern>/MyHistory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MyUpdate</servlet-name>
+        <url-pattern>/MyUpdate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MyUpdateResult</servlet-name>
+        <url-pattern>/MyUpdateResult</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Cart2</servlet-name>
+        <url-pattern>/Cart2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MyDelete</servlet-name>
+        <url-pattern>/MyDelete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MyDeleteResult</servlet-name>
+        <url-pattern>/MyDeleteResult</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

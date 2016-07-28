@@ -31,6 +31,8 @@ public class Regisration extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
+            
+            Log.LogWrite("ユーザー情報登録ページヘ移動しました。");
             request.getRequestDispatcher("/regisration.jsp").forward(request, response);
         } catch (Exception e) {
             

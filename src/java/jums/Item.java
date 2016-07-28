@@ -36,6 +36,8 @@ public class Item extends HttpServlet {
                 HttpSession session = request.getSession();
 
                 session.setAttribute("detail", YahooConnect.getInstance().searchById(request.getParameter("id")));
+                
+                Log.LogWrite("アイテム詳細画面に移動しました。");
                 request.getRequestDispatcher("/item.jsp").forward(request, response);
             
         }catch(Exception e) {

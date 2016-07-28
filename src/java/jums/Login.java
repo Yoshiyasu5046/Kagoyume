@@ -40,6 +40,7 @@ public class Login extends HttpServlet {
                 String url = request.getHeader("REFERER").substring(30);
                 session.setAttribute("referer", url);
                 
+                Log.LogWrite("ログインページヘ移ります。");
                 request.getRequestDispatcher("/login.jsp").forward(request, response);
         
         } catch(Exception e) {

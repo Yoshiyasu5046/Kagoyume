@@ -4,10 +4,12 @@
     Author     : yoshiyasukitahara
 --%>
 
+<%@page import="jums.UserDataBeans"%>
 <%@page import="jums.JumsHelper" %>
     
 <%
     JumsHelper jh = JumsHelper.getInstance();
+    UserDataBeans udb = (UserDataBeans) session.getAttribute("login");
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -23,7 +25,7 @@
             商品検索:
             <input type="text" name="search" required value="">
             <input type="submit" value="検索">
-        </form>
-        <%= jh.login() %>
+        </form><br>
+        <%= jh.loginCheck(udb) %>
     </body>
 </html>

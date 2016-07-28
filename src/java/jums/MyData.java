@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,7 +32,19 @@ public class MyData extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-           request.getRequestDispatcher("myData.jsp").forward(request, response); 
+            // DTOオブジェクトをUDBに変換した後にセッションに保存。jspファイルでudb経由で呼び出すため。
+            HttpSession session = request.getSession();
+            UserDataBeans udb = (UserDataBeans) session.getAttribute("login");
+            UserDataDTO dto= new UserDataDTO();
+            udb.Udb2dtoMapping(dto);
+            dto.setUserID(udb.getUserID());
+            UserDataDTO UserData = UserDataDAO.getInstance().getUserData(dto);
+            udb.Dto2UdbMapping(UserData);
+            session.setAttribute("userData", udb);
+          
+            Log.LogWrite("ユーザー情報ページに移動しました。");
+            request.getRequestDispatcher("/myData.jsp").forward(request, response);
+            
         }catch(Exception e) {
             
         }
